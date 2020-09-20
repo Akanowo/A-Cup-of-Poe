@@ -1,0 +1,114 @@
+<% include partials/header %>
+
+<!-- page-title -->
+<div class="ttm-page-title-row">
+  <div class="ttm-page-title-row-bg-layer ttm-bg-layer"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="title-box ttm-textcolor-white">
+          <div class="page-title-heading ttm-textcolor-white">
+            <h1 class="title"><%= title %> </h1>
+          </div><!-- /.page-title-captions -->
+          <div class="breadcrumb-wrapper">
+            <span>
+              <a title="Homepage" href="/"><i class="ti ti-home"></i> Home </a>
+            </span>
+            <span class="ttm-bread-sep"> &nbsp; :&nbsp;: &nbsp; </span>
+            <span><span class="ttm-textcolor-skincolor"><%= title %> </span></span>
+          </div>
+        </div>
+      </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</div><!-- page-title end-->
+
+<!--site-main start-->
+<div class="site-main">
+  <!-- sidebar -->
+  <div class="sidebar ttm-sidebar-right ttm-bgcolor-white break-991-colum clearfix">
+    <div class="container">
+      <!-- row -->
+      <div class="row">
+        <div class="col-lg-9 content-area pb-0">
+          <!-- post -->
+          <article class="post ttm-blog-classic box-shadow1">
+            <!-- featured-imagebox -->
+            <div class="featured-imagebox featured-imagebox-post ttm-box-view-top-image">
+              <div class="ttm-post-featured-outer mb-20">
+                <div class="featured-thumbnail">
+                  <img class="img-fluid" src="<%=post.imageUrl%>" alt="">
+                </div>
+              </div>
+            </div><!-- featured-imagebox end-->
+            <div class="ttm-blog-classic-content single-blog ttm-bgcolor-white">
+              <div class="post-meta above-title pb-13">
+                <span class="ttm-meta-line byline"><i class="fa fa-user ttm-textcolor-skincolor"></i>Precious</span>
+                <span class="ttm-meta-line comments-link"><i class="fa fa-comment ttm-textcolor-skincolor"></i> <%=comments.length%>
+                  Comment(s)</span>
+                <span class="ttm-meta-line byline"><i class="fa fa-thumbs-o-up ttm-textcolor-skincolor"></i>
+                  <%= post.createdAt %></span>
+              </div>
+              <div class="separator clearfix">
+                <div class="sep-line mt_5 mb-30"></div>
+              </div>
+              <p><%= post.content %> </p>
+              <div class="ttm-blog-classic-box-comment">
+                <div id="comments" class="comments-area">
+                  <% if (comments.length === 1) { %>
+                    <h2 class="comments-title"><%= comments.length %>  Reply to “<%= title %> ”</h2>
+                  <% } else { %>
+                    <h2 class="comments-title"><%= comments.length %>  Replies to “<%= title %> ”</h2>
+                  <% } %> 
+                  <div class="comments-body">
+                    <% comments = comments.reverse() %> 
+                    <% comments.forEach(comment => { %>
+                      <div class="media p-3">
+                        <img src="/images/person.png" style="height:100px; width:100px;" alt="John Doe" class="">
+                        <div class="media-body">
+                          <h4><%= comment.name %> </h4>
+                          <small><i><%=post.createdAt%></i></small>
+                          <p class="pt-10"><%= comment.comment %> </p>
+                        </div>
+                      </div>
+                    <% }) %>
+                  </div>
+                  <div class="comment-respond">
+                    <h2 class="comment-reply-title">Leave a Reply</h2>
+                    <form id="commentForm" method="POST" action="/blog/comment">
+                      <p class="comment-notes">Your email address will not be published. </p>
+                      <p class="comment-form-comment">
+                        <textarea id="comment" placeholder="Comment" name="comment" cols="45" rows="8"
+                          aria-required="true"></textarea>
+                      </p>
+                      <p class="comment-form-author">
+                        <input id="author" placeholder="Name (required)" name="name" type="text" value="" size="30"
+                          aria-required="true">
+                      </p>
+                      <p class="comment-form-email">
+                        <input id="email" placeholder="Email (required)" name="email" type="text" value="" size="30"
+                          aria-required="true">
+                      </p>
+                      <p class="comment-form-url">
+                        <input id="url" placeholder="Website" name="website" type="text" value="" size="30">
+                      </p>
+                      <p class="form-submit">
+                        <button type="submit" id="submit" name="post_id"
+                          class="submit ttm-btn ttm-btn-size-md ttm-btn-shape-round ttm-btn-style-fill ttm-btn-bgcolor-skincolor"
+                          value="<%= post._id %>">Post Comment</button>
+                      </p>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article><!-- post end -->
+        </div>
+      </div><!-- row end -->
+    </div>
+  </div>
+  <!-- sidebar end -->
+</div>
+<!--site-main end-->
+
+<% include partials/footer %>

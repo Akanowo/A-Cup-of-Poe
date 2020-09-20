@@ -1,0 +1,81 @@
+<% include partials/header %>
+
+<div class="container-fluid">
+  <form method="POST" onsubmit="return createPost(this);">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" class="form-control">
+    </div>
+    <!-- Button trigger upload image modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
+      Upload Image
+    </button>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textArea name="content"  id="content" class="form-control"></textArea>
+    </div>
+    <input type="submit" class="btn btn-info" value="Post">
+  </form>
+
+</div>
+</main>
+<script>
+  function createPost(formValues) {
+    $.ajax({
+      url: '/admin/create-post',
+      method: 'POST',
+      data: {
+        title: formValues.title.value,
+        content: formValues.content.value,
+        imageUrl: imagePath
+      },
+      success: (response) => {
+        alert(response);
+      }
+    });
+    return false;
+  }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="imageForm" enctype="multipart/form-data" method="POST">
+          <div class="form-group">
+            <input type="file" name="image" class="form-control">
+          </div>
+          <input type="submit" class="btn btn-primary" value="Upload" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    let imagePath = '';
+    $('#imageForm').on('submit', function(e) {
+      e.preventDefault();
+      $.ajax({
+      url: '/admin/upload-image',
+      method: 'POST',
+      data: new FormData(this),
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: (response) => {
+        imagePath = response;
+        $('#modelId').modal('hide');
+      }
+    });
+    });
+</script>
+
+<% include partials/footer %>

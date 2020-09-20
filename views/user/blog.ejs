@@ -1,0 +1,66 @@
+<% include partials/header %> 
+
+        <!-- page-title -->
+        <div class="ttm-page-title-row">
+            <div class="ttm-page-title-row-bg-layer ttm-bg-layer"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center"> 
+                        <div class="title-box ttm-textcolor-white">
+                            <div class="page-title-heading ttm-textcolor-white">
+                                <h1 class="title">Blog</h1>
+                            </div><!-- /.page-title-captions -->
+                            <div class="breadcrumb-wrapper">
+                                <span>
+                                    <a title="Homepage" href="/"><i class="ti ti-home"></i> Home </a>
+                                </span>
+                                <span class="ttm-bread-sep"> &nbsp; :&nbsp;: &nbsp; </span>
+                                <span><span class="ttm-textcolor-skincolor">Blog</span></span>
+                            </div>  
+                        </div>
+                    </div><!-- /.col-md-12 -->  
+                </div><!-- /.row -->  
+            </div><!-- /.container -->                      
+        </div><!-- page-title end-->
+
+
+    <!--site-main start-->
+    <div class="site-main">
+        
+        <!-- post-section -->
+        <section class="ttm-row our-post-section clearfix">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <% if(posts.length === 0) { %>
+                        <div class="text-center col-lg-12">
+                            <p>Nothing to show.</p>
+                        </div>
+                    <% } %>
+
+                  <% posts.forEach(post => { %>
+                    <div class="col-md-6 col-lg-4">
+                      <!-- featured-imagebox -->
+                      <div class="featured-imagebox featured-imagebox-post ttm-box-view-top-image box-shadow1 mb-30">
+                          <div class="ttm-post-featured-outer">
+                              <div class="featured-thumbnail">
+                                  <img class="img-fluid" src="<%=post.imageUrl%>" alt="">
+                              </div>
+                          </div>
+                          <div class="featured-content featured-content-post">
+                              <div class="post-title featured-title">
+                                  <h5><a href="/blog/<%=post._id%>" tabindex="-1"><%= post.title %> </a></h5>
+                              </div>
+                          </div>
+                      </div><!-- featured-imagebox end-->
+                  </div>
+                  <% }) %>
+                </div><!-- row end -->
+            </div>
+        </section>
+        <!-- post-section end -->
+
+    </div><!--site-main end-->
+
+
+    <% include partials/footer %> 
