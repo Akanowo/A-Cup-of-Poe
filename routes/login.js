@@ -5,10 +5,9 @@ var loginController = require('../controllers/login.js');
 
 router.route('/login')
   .get(loginController.getLogin)
-  .post(passport.authenticate('local', {
-    successRedirect: '/admin/create-post',
-    failureRedirect: '/accounts/login'
-  }));
+  .post(passport.authenticate('local'), (req, res) => {
+    res.json({ authMessage: 'Login Successful' })
+  });
 
 router.route('/logout')
   .get(loginController.logout);

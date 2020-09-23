@@ -39,7 +39,7 @@ exports.newPost = (req, res) => {
     res.send('Post created');
   }).catch((err) => {
     console.log(err);
-    res.send('Could not create post');
+    res.status(400).send('Could not create post');
   });
 };
 

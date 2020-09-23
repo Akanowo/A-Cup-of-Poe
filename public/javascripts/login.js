@@ -28,19 +28,27 @@ document.addEventListener('DOMContentLoaded', function() {
         method: 'POST',
         data: { email: email.value, password: password.value },
         success: (response) => {
-            console.log(response);
             if(response === 'invalid credentials') {
                 alert(response);
             }
 
-            if(response) {
+            if(response && response.authMessage) {
+                alert('Login Successful')
                 window.location.href = '/admin/create-post';
                 return true;
             }
-
             
             if(!response) {
                 alert('Invalid login details');
+            }
+        },
+        error: (e) => {
+            if(e.responseText === 'Unauthorized') {
+                alert('Invalid username or password');
+            }
+
+            if(e.status === 400) {
+                alert('One or more fields empty');
             }
         }
     });
