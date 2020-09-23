@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 makeRequest('/admin/create-post', 'GET').then((result) => {
                     console.log(result.body);
                 });
+                window.location.href = '/admin/create-post';
                 return true;
             }
 
