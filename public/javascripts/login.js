@@ -33,13 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert(response);
             }
 
-            if(response && response.accessToken) {
-                localStorage.setItem('token', response.accessToken);
-                const token = localStorage.getItem('token');
-                console.log(token);
-                makeRequest('/admin/create-post', 'GET').then((result) => {
-                    console.log(result.body);
-                });
+            if(response) {
                 window.location.href = '/admin/create-post';
                 return true;
             }
