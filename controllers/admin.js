@@ -4,7 +4,7 @@ const fs = require('fs');
 const { Post } = require('../models/post.model');
 
 exports.getIndex = (req, res) => {
-  res.redirect('/admin/create-post');
+  res.render('admin/404');
 };
 
 // exports.getDashboard = (req, res) => {
@@ -12,6 +12,7 @@ exports.getIndex = (req, res) => {
 // };
 
 exports.getCreatePost = (req, res) => {
+  console.log(req.user);
   res.render('admin/new-post');
 };
 

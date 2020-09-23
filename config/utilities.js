@@ -3,6 +3,7 @@ const logger = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const debug = require('debug')('essential-living:utilities');
 const mongoose = require('mongoose');
@@ -11,7 +12,7 @@ const helmet = require('helmet');
 
 
 const sess = {
-  secret: 'essential living',
+  secret: 'lifeofpoe',
   resave: false,
   saveUninitialized: true,
   cookie: {}
@@ -63,4 +64,6 @@ module.exports = (app) => {
   app.use('/js', express.static(path.join(__dirname, '..', 'public/revolution/js')));
   app.use('/images', express.static(path.join(__dirname, '..', 'public/images')));
   app.use('/public', express.static(path.join(__dirname, '..', 'public')));
+
+  require('./passport')(app);
 };
