@@ -4,7 +4,6 @@ const viewConfig = require('./config/view');
 const errorConfig = require('./config/error');
 const utilitiesConfig = require('./config/utilities');
 const routesConfig = require('./config/routes');
-// require('dotenv').config();
 
 const app = express();
 

@@ -1,7 +1,6 @@
 // jshint esversion:8
 const express = require('express');
 const adminController = require('../controllers/admin');
-const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
