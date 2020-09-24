@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var blogController = require('../controllers/blog.js');
+const express = require('express');
+const router = express.Router();
+const blogController = require('../controllers/blog.js');
 
 router.route('/')
   .get(blogController.getIndex);
